@@ -1,0 +1,164 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>NatSec Noir · Option B · dark hybrid</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Limelight&family=Archivo:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* OPTION B — dark hybrid, iteration 2.
+   Three faces, one job each: Limelight for the nameplate and tracked-caps section heads; Newsreader for
+   record titles and summaries; IBM Plex Mono for every dateline, docket, slug and folio. Archivo for nav only.
+   Warm ink on cold near-black. Hairlines are brass-tinted so the accent lives in the rules. Brass itself has
+   two jobs: the active nav marker and the newsletter button. One texture: 3% grain plus a corner vignette. */
+:root{
+  --bg:#0B0E17;
+  --ink:#EDE7D9; --smoke:rgba(237,231,217,.68); --ash:rgba(237,231,217,.46);
+  --hair:rgba(217,165,90,.16); --hair2:rgba(217,165,90,.30); --hair3:rgba(217,165,90,.5);
+  --brass:#D9A55A; --brass-dim:rgba(217,165,90,.78);
+  --mark:"Limelight",Georgia,serif; --serif:"Newsreader","Iowan Old Style",Georgia,serif;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif; --mono:"IBM Plex Mono",Menlo,Consolas,monospace;
+  --measure:1040px; --refcol:152px; --gut:32px;
+}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+html{background:var(--bg)}
+body{margin:0;min-height:100vh;background:radial-gradient(60% 520px at 50% 0%,rgba(237,231,217,.04),transparent 100%) no-repeat;
+  color:var(--ink);font:17px/1.5 var(--serif);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;position:relative}
+body::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:50;opacity:.035;mix-blend-mode:screen;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.wrap{max-width:var(--measure);margin:0 auto;padding:0 var(--gut)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:.03em}
+
+/* nameplate: wordmark, one rule, dateline, one rule, nav, one rule. Same ground throughout. */
+.plate{text-align:center;padding:72px 0 0}
+.plate .mark{display:block;font:400 clamp(54px,8.6vw,116px)/1 var(--mark);letter-spacing:.015em;color:#F4EEE0;margin:0}
+.plate .mark .w2{margin-left:.2em}
+.plate .tag{margin:24px 0 0;font:400 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
+.dateline{margin-top:34px;border-top:1px solid var(--hair3);border-bottom:1px solid var(--hair)}
+.dateline .wrap{display:flex;justify-content:space-between;gap:24px;padding:10px var(--gut);font:400 12px/1.5 var(--mono);letter-spacing:.04em;color:var(--ash);font-variant-numeric:tabular-nums;text-transform:uppercase}
+.dateline .wrap span:nth-child(2){color:var(--smoke)}
+nav{position:sticky;top:0;z-index:5;background:rgba(11,14,23,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--hair)}
+nav .wrap{display:flex;align-items:stretch;font:500 13.5px var(--sans);letter-spacing:.01em}
+nav a{display:inline-flex;align-items:center;padding:15px 0;margin-right:30px;color:var(--smoke);border-bottom:1px solid transparent;margin-bottom:-1px}
+nav a:hover{color:var(--ink)}
+nav a.on{color:var(--ink);border-bottom-color:var(--brass)}
+nav a.sub{margin-left:auto;margin-right:0}
+
+/* section head: deco face, caps, tracked, rule attached */
+.shead{display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:56px 0 12px;border-bottom:1px solid var(--hair2)}
+.shead h2{font:400 22px/1 var(--mark);letter-spacing:.1em;text-transform:uppercase;margin:0;color:#F4EEE0}
+.shead .n{font:400 12px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ash);font-variant-numeric:tabular-nums}
+
+/* ledger: one continuous vertical rule, fixed reference column, uniform entries */
+.ledger{position:relative}
+.ledger::before{content:"";position:absolute;top:0;bottom:0;left:var(--refcol);width:1px;background:var(--hair)}
+.item{display:grid;grid-template-columns:var(--refcol) 1fr;grid-template-rows:auto auto auto;column-gap:var(--gut);align-items:baseline;padding:30px 0 34px;border-bottom:1px solid var(--hair)}
+.item .slug{grid-column:2;grid-row:1;font:400 11.5px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ash)}
+.item .slug b{font-weight:500;color:var(--brass-dim)}
+.item .ref{grid-column:1;grid-row:2;font:400 13px/1.5 var(--mono);letter-spacing:.03em;color:var(--smoke);font-variant-numeric:tabular-nums;padding-right:16px}
+.item .ref small{display:block;font-size:12px;color:var(--ash);margin-top:2px}
+.item h3{grid-column:2;grid-row:2;margin:8px 0 0;font:400 28px/1.22 var(--serif);letter-spacing:-.006em;color:#F4EEE0}
+.item h3 a:hover{text-decoration:underline;text-decoration-color:var(--hair3);text-underline-offset:5px;text-decoration-thickness:1px}
+.item p{grid-column:2;grid-row:3;margin:10px 0 0;max-width:62ch;color:var(--smoke);font-size:17px;line-height:1.5}
+.pager{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0 0;font:400 12px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ash)}
+.pager a{color:var(--smoke);border-bottom:1px solid var(--hair2);padding-bottom:1px} .pager a:hover{color:var(--ink);border-bottom-color:var(--brass)}
+@media (max-width:640px){
+  .ledger::before{display:none}
+  .item{grid-template-columns:1fr;grid-template-rows:auto auto auto auto;row-gap:4px}
+  .item .slug{grid-column:1;grid-row:1} .item .ref{grid-column:1;grid-row:2;padding:0} .item .ref small{display:inline;margin:0 0 0 12px}
+  .item h3{grid-column:1;grid-row:3} .item p{grid-column:1;grid-row:4}
+}
+
+/* newsletter coupon: hairline box, corner ticks, brass button with ink caps */
+.letter{margin:72px auto 0}
+.letter .box{position:relative;border:1px solid var(--hair2);padding:36px 40px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+.letter .box::before,.letter .box::after{content:"";position:absolute;width:10px;height:10px;border:1px solid var(--hair3);pointer-events:none}
+.letter .box::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.letter .box::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.letter h2{font:400 20px/1 var(--mark);letter-spacing:.1em;text-transform:uppercase;margin:0;color:#F4EEE0}
+.letter p{color:var(--smoke);font-size:16px;margin:10px 0 0;max-width:50ch}
+.letter form{display:flex;border:1px solid var(--hair2)}
+.letter input{width:250px;padding:13px 16px;background:transparent;border:0;color:var(--ink);font:16px var(--serif)}
+.letter input::placeholder{color:var(--ash)}
+.letter button{padding:13px 22px;border:0;border-left:1px solid var(--hair2);background:var(--brass);color:#14100A;font:500 11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.letter button:hover{background:#E4B56A}
+@media (max-width:720px){.letter .box{grid-template-columns:1fr;padding:28px 24px}.letter form,.letter input{width:100%}}
+
+footer{margin-top:64px;border-top:1px solid var(--hair)}
+footer .wrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between;padding:14px var(--gut) 60px;font:400 12px/1.5 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--ash);font-variant-numeric:tabular-nums}
+footer a:hover{color:var(--ink)}
+</style></head><body>
+
+<header class="plate">
+  <h1 class="mark"><span class="w1">NatSec</span><span class="w2">Noir</span></h1>
+  <p class="tag">Public records on equipment authorization, the Covered List, and test labs</p>
+  <div class="dateline"><div class="wrap">
+    <span>Vol. I · No. 42</span>
+    <span>Federal Communications Commission docket</span>
+    <span>Updated 2026-07-28</span>
+  </div></div>
+</header>
+
+<nav><div class="wrap">
+  <a class="on" href="#">Feed</a><a href="#">By tags</a><a href="#">By source</a><a href="#">By type</a><a href="#">RSS</a>
+  <a class="sub" href="#">Subscribe</a>
+</div></nav>
+
+<main class="wrap">
+<div class="shead"><h2>Latest records</h2><span class="n">Newest first</span></div>
+<div class="ledger">
+<article class="item">
+  <div class="slug"><b>FCC</b> · Public notice · Covered List</div>
+  <div class="ref">2026-07-28<small>DA 26-786</small></div>
+  <h3><a href="#">Robotics and Power Inverters Covered List</a></h3>
+  <p>The FCC Public Safety and Homeland Security Bureau adds foreign-produced power inverters and advanced robotic devices to the FCC Covered List based on Executive Branch national-security determinations.</p>
+</article>
+<article class="item">
+  <div class="slug"><b>FCC</b> · Public notice · Covered List</div>
+  <div class="ref">2026-07-28<small>DA 26-789</small></div>
+  <h3><a href="#">OET Permissive Change Waiver: Robotics Power Inverters</a></h3>
+  <p>The FCC Office of Engineering and Technology waives, through at least January 1, 2029, specified prohibitions on Class I and Class II permissive changes for previously authorized covered devices.</p>
+</article>
+<article class="item">
+  <div class="slug"><b>FCC</b> · Public notice · Covered List</div>
+  <div class="ref">2026-07-27<small>DA 26-775</small></div>
+  <h3><a href="#">Router Conditional Approvals</a></h3>
+  <p>The Public Safety and Homeland Security Bureau announces that a Department of War Conditional Approval exempts SpaceX Services' Starlink routers from the Covered List, subject to a February 1, 2028 termination date.</p>
+</article>
+<article class="item">
+  <div class="slug"><b>FCC</b> · Public notice · Covered List</div>
+  <div class="ref">2026-07-24<small>DA 26-768</small></div>
+  <h3><a href="#">Drone Router Conditional Approvals</a></h3>
+  <p>The bureau excludes specified uncrewed aircraft systems and router classes from the Covered List because the Department of War granted Conditional Approvals for those devices.</p>
+</article>
+<article class="item">
+  <div class="slug"><b>FCC</b> · Order to show cause · Bad Labs</div>
+  <div class="ref">2026-07-21<small>ET Docket 26-140</small></div>
+  <h3><a href="#">Shenzhen STS: CopyPaste-2 Order to Show Cause</a></h3>
+  <p>The Office of Engineering and Technology institutes a proceeding to withdraw a test laboratory's accreditation on its tentative determination that it willfully submitted false equipment test results.</p>
+</article>
+<article class="item">
+  <div class="slug"><b>FCC</b> · Order to show cause · Covered List</div>
+  <div class="ref">2026-07-21<small>ET Docket 26-186</small></div>
+  <h3><a href="#">Odyssey Robot Order to Show Cause</a></h3>
+  <p>The bureaus require Odyssey Robot LLC to show cause why the Commission should not revoke two equipment authorizations tentatively found to have been obtained through false representations.</p>
+</article>
+</div>
+<div class="pager"><span>6 of 42</span><a href="#">Older records</a></div>
+
+<section class="letter">
+  <div class="box">
+    <div><h2>The Late Edition</h2><p>New records and one short read, when there is something worth knowing. Sent from newsletter.natsecnoir.com.</p></div>
+    <form><input type="email" placeholder="Your address"><button type="button">Subscribe</button></form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <span>© 2026 NatSecNoir.com</span>
+  <span>Summaries are the author's · Documents are public records</span>
+  <span><a href="#">Public repository</a></span>
+</div></footer>
+
+</body></html>
