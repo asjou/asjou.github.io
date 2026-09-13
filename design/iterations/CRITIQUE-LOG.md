@@ -12,3 +12,17 @@ Procedure per iteration: full-page screenshot at 1440px, fresh Fable critic with
 | v4 | 5/10 | Dateline moved right, date column top-aligned, lead ratio 1.4:1, double rule under masthead, tinted newsletter panel. Critic: Limelight wordmark, kickers too dim, no strong lead, dinkus and monogram read as filler |
 
 Owner overrides in force since v3: keep Limelight, keep the dinkus and printer's mark, keep the deco face on folio and footer, cool ink not warm, cobalt accent not gold, dockets not in mono.
+
+## Round 3: Shanghai deco palette, new wordmark face
+
+Owner direction: warmer palette from the Shanghai deco study (lacquer, ivory, gold, jade, vermilion), a deco face with more authority at a smaller size, drop the dinkus and printer's mark, folio and footer in serif small caps. Five wordmark candidates were rendered side by side in wordmark-candidates.png. Bodoni Moda in tracked caps was chosen.
+
+| Iteration | Score | Main gaps named by the critic |
+|---|---|---|
+| v5 | 5.5/10 | Two type scales (lead vs rest); wordmark too light and loosely tracked; single rule under masthead; teal kickers read as dashboard labels; folio-to-newsletter gap |
+| v6 | 6/10 | Six equal entries; green button; three rule systems in masthead; mono dates; headline and deck on different measures |
+| v7 | 6/10 | Green button; masthead too tight; dateline in nav; mono date beside serif docket; headline orphans; kickers in gold |
+
+v7 as committed carries one unscored tweak after the critique: headline measure widened and balanced to remove the orphan.
+
+Owner rules in force: mono for dates, dockets not in mono, green accent kept, no gold on interactive elements.
