@@ -78,3 +78,19 @@ Verification: viewport frames every 720px of scroll at 1440px and 400px, plus 10
 | v12 | 7/10 | Dead width at 1440 (reverses owner: centred column); six equal entries, wants a lead (reverses owner); labels, deks and dockets in near-identical greys; newsletter box oversized for its content, green button clashes; footer thin. Imagery: masthead and seal carry the noir conceit; lamp cone on the edge of decoration |
 
 Thirteen fresh critics, twelve iterations. Scores: 5, 5, 6, 5, 5, 5.5, 6, 6, 6, 6, 6, 6, 7. The three top items in v12 are all reversals of standing owner decisions.
+
+## Round 9: critic gaps worked, Limelight wordmark, seal withdrawn
+
+Owner direction: follow the v12 critic on the remaining gaps; a more noir or art deco masthead face; take out the red Bad Labs seal.
+
+Rig defect found and fixed this round: inside the sandbox browser the Google Fonts stylesheet request was reset, so the v12 screenshots, the v12 critic score and the v12.png in this folder were rendered with fallback faces. The rig now fetches the fonts through curl and serves them to the browser. v12.png is regenerated with the real faces; the v12 score of 7 stands as recorded but was given on fallback type.
+
+Wordmark: eighteen faces rendered on the blinds plate with the cut-metal treatment (wordmark-candidates-2.png). Limelight chosen: the one face that is both deco and noir, and the treatment turns it into a marquee. Runner-up Fascinate Inline.
+
+Applied from the v12 critic: right rail at 1100px and up (newsletter card, counts by type and tag, a line from the record) so the page uses its width; a lead record one size up with a three-line summary in ink and a rule beneath; three grey tiers (ink for titles, tags and dates; a brighter dim for summaries; ash for labels, dockets and colophon); nav links in ink so the bar anchors the top; newsletter cut to a rail card with a bone key, no green on any control; footer with a masthead echo, a sections reprise and the colophon. Seal withdrawn and its plate removed.
+
+| Iteration | Score | Main gaps named by the critic |
+|---|---|---|
+| v13 | 7/10 | Items two to six identical after the lead, wants a second tier; blinds plate inert behind the wordmark and cut hard at the nav; rail runs out of content by mid-page; metadata column and headline block do not share a baseline; newsletter card and Bad Labs red read as tonal outliers. Wordmark: nails deco, tips toward marquee; wants a flatter fill and tighter tracking |
+
+Fourteen fresh critics, thirteen iterations. Scores: 5, 5, 6, 5, 5, 5.5, 6, 6, 6, 6, 6, 6, 7, 7.
