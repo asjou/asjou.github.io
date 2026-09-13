@@ -94,3 +94,17 @@ Applied from the v12 critic: right rail at 1100px and up (newsletter card, count
 | v13 | 7/10 | Items two to six identical after the lead, wants a second tier; blinds plate inert behind the wordmark and cut hard at the nav; rail runs out of content by mid-page; metadata column and headline block do not share a baseline; newsletter card and Bad Labs red read as tonal outliers. Wordmark: nails deco, tips toward marquee; wants a flatter fill and tighter tracking |
 
 Fourteen fresh critics, thirteen iterations. Scores: 5, 5, 6, 5, 5, 5.5, 6, 6, 6, 6, 6, 6, 7, 7.
+
+## Round 10: items 5, 2 and 3 from the v13 critic
+
+Owner direction: do items 5, 2 and 3 only (wordmark fill and tracking; the plate and the wordmark; rail content). Item 4 (shared baselines) folded in as a small alignment fix. Item 1 (a second tier) not taken.
+
+Applied: flat ivory wordmark, tracking .08em to .035em, extrusion and cast shadow kept; a second text layer clips the same blinds plate to the letters and multiplies onto the face, so the light through the blinds falls across the letterforms; the plate runs on 220px behind the nav and fades out in the page instead of stopping at the nav line; rail no longer sticky, with a line from the record, dates to watch, and tags added so it runs the length of the feed; date on the kicker baseline and docket on the headline baseline.
+
+Verification: frames every 720px of scroll at 1440px, 1024px and 400px. One defect found and fixed before scoring: the light layer did not paint because the inner wordmark block was positioned, which excludes it from a text clip on its parent. One defect fixed after scoring: the rail ran past the feed and left a dead band bottom-left (critic item 4 below); the Sources module is removed and v14.png regenerated.
+
+| Iteration | Score | Main gaps named by the critic |
+|---|---|---|
+| v14 | 7/10 | Lead barely bigger than the rest, wants a real lead (reverses owner); light streaks fight the wordmark, read as stock texture and bleed behind the nav (reverses critic 13, who asked for exactly that); rail is six identical list widgets; dead band bottom-left (fixed after scoring); teal hairlines too faint, white key the brightest thing on the page. Masthead: the lit face reads as chrome and 1980s television, wants matte (reverses critic 13's ask for the plate to interact with the wordmark) |
+
+Fifteen fresh critics, fourteen iterations. Scores: 5, 5, 6, 5, 5, 5.5, 6, 6, 6, 6, 6, 6, 7, 7, 7. Three critics in a row at 7. Critics 13 and 14 reverse each other on the masthead lighting.
