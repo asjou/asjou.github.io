@@ -26,3 +26,11 @@ Owner direction: warmer palette from the Shanghai deco study (lacquer, ivory, go
 v7 as committed carries one unscored tweak after the critique: headline measure widened and balanced to remove the orphan.
 
 Owner rules in force: mono for dates, dockets not in mono, green accent kept, no gold on interactive elements.
+
+## Round 4: owner answers to the grilling
+
+Poiret One ivory wordmark; docket in the kicker line; mono date alone in the margin; vertical rule stopped short of horizontal rules; summaries cut to two lines; new tagline; "Updated" date beside Subscribe; grain 8 percent and stronger vignette.
+
+| Iteration | Score | Main gaps named by the critic |
+|---|---|---|
+| v8 | 6/10 | Nav weakest element (mixed weights, divider, duplicate Subscribe); horizontal rules between entries fight the vertical rule; lead headline still larger (owner asked for equal, fixed after scoring); mono date vs serif docket; tagline too small; teal button; Bad Labs tag under-marked; footer hierarchy; deck measure too wide |
