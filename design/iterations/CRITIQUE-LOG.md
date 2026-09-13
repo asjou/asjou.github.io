@@ -44,3 +44,13 @@ Owner overruled own rules. Applied: one nav weight with a 2px accent underline a
 | v9 | 6/10 | Right 40 percent of page empty; entries need hairlines back (reverses critic 9); masthead needs a dateline back (reverses owner); headlines too small; kicker glyph inconsistent; mono too cold; newsletter generic; nav underline is a web tab (reverses critic 9); footer thin |
 
 Ten fresh critics over nine iterations: scores 5, 5, 6, 5, 5, 5.5, 6, 6, 6, 6. Critics 9 and 10 reverse each other on row rules, nav underline, dateline, and ornament.
+
+## Round 6: centred column
+
+Page narrowed to an 830px centred column. Headlines 34px. One kicker system: type muted, tag in ink, Bad Labs red. Courier Prime replaces IBM Plex Mono. Non-breaking hyphen in CopyPaste-2 fixed after scoring.
+
+| Iteration | Score | Main gaps named by the critic |
+|---|---|---|
+| v10 | 6/10 | Six identical entries, wants a lead (reverses owner); 90px gaps, wants hairlines back (reverses critic 9); masthead needs a dateline (reverses owner and critic 9); mono too grey; kicker colours; hyphen break in CopyPaste-2 (fixed); nav underline (reverses critic 9); texture; newsletter coupon; colophon |
+
+Eleven fresh critics, ten iterations. Scores: 5, 5, 6, 5, 5, 5.5, 6, 6, 6, 6, 6. Since v6 every critic states the page shows no AI-generated tells. The remaining top-ranked items reverse from critic to critic.
