@@ -64,3 +64,17 @@ Ink changed from ivory to cool white, dim grey cooled, ground moved from warm br
 | v11 | 6/10 | Hairlines between entries (reverses critic 9); replace tagline with an edition line (reverses owner); nav undesigned; kicker and tag pairing muddy; pick one accent; newsletter coupon; pagination on one line; titles wrap; texture |
 
 Twelve fresh critics, eleven iterations. Scores: 5, 5, 6, 5, 5, 5.5, 6, 6, 6, 6, 6, 6.
+
+## Round 8: generated plates and lit surfaces
+
+Owner direction: more personality; image generation; shading and 3D effects combined with images; verify frame by frame in the browser. No image-generation model was available, so three plates were drawn as SVG (turbulence, displacement, blur, vignette, grain) and rendered to bitmaps in headless Chromium. Source for all three is in design/img/plates-source.html.
+
+Applied: blinds plate behind the masthead (light through venetian blinds, smoke, fades into the ground); wordmark as cut metal on the wall (lit top edge, four-step extrusion, long soft cast shadow down-right, matching the blinds light); sticky strip as a lacquer bar with a lit top edge and a shadow onto the page; the Bad Labs record carries an inked, worn vermilion seal set 11 degrees off square; newsletter panel under a lamp cone with dust in the beam, bevelled Subscribe key; fog rising from the foot of the page. Type, palette and ledger unchanged from v11.
+
+Verification: viewport frames every 720px of scroll at 1440px and 400px, plus 1024px full page, hover and focus states on the button. Three defects found and fixed before scoring: seal overlapped the kicker on phones (moved beside the date lines), nav wrapped to two lines on phones (one line, scrolls sideways), lamp cone ended in a hard edge at the box bottom (faded into the ground).
+
+| Iteration | Score | Main gaps named by the critic |
+|---|---|---|
+| v12 | 7/10 | Dead width at 1440 (reverses owner: centred column); six equal entries, wants a lead (reverses owner); labels, deks and dockets in near-identical greys; newsletter box oversized for its content, green button clashes; footer thin. Imagery: masthead and seal carry the noir conceit; lamp cone on the edge of decoration |
+
+Thirteen fresh critics, twelve iterations. Scores: 5, 5, 6, 5, 5, 5.5, 6, 6, 6, 6, 6, 6, 7. The three top items in v12 are all reversals of standing owner decisions.
