@@ -54,3 +54,13 @@ Page narrowed to an 830px centred column. Headlines 34px. One kicker system: typ
 | v10 | 6/10 | Six identical entries, wants a lead (reverses owner); 90px gaps, wants hairlines back (reverses critic 9); masthead needs a dateline (reverses owner and critic 9); mono too grey; kicker colours; hyphen break in CopyPaste-2 (fixed); nav underline (reverses critic 9); texture; newsletter coupon; colophon |
 
 Eleven fresh critics, ten iterations. Scores: 5, 5, 6, 5, 5, 5.5, 6, 6, 6, 6, 6. Since v6 every critic states the page shows no AI-generated tells. The remaining top-ranked items reverse from critic to critic.
+
+## Round 7: cool white ink
+
+Ink changed from ivory to cool white, dim grey cooled, ground moved from warm brown-black to neutral near-black.
+
+| Iteration | Score | Main gaps named by the critic |
+|---|---|---|
+| v11 | 6/10 | Hairlines between entries (reverses critic 9); replace tagline with an edition line (reverses owner); nav undesigned; kicker and tag pairing muddy; pick one accent; newsletter coupon; pagination on one line; titles wrap; texture |
+
+Twelve fresh critics, eleven iterations. Scores: 5, 5, 6, 5, 5, 5.5, 6, 6, 6, 6, 6, 6.
