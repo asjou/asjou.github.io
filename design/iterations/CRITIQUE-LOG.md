@@ -34,3 +34,13 @@ Poiret One ivory wordmark; docket in the kicker line; mono date alone in the mar
 | Iteration | Score | Main gaps named by the critic |
 |---|---|---|
 | v8 | 6/10 | Nav weakest element (mixed weights, divider, duplicate Subscribe); horizontal rules between entries fight the vertical rule; lead headline still larger (owner asked for equal, fixed after scoring); mono date vs serif docket; tagline too small; teal button; Bad Labs tag under-marked; footer hierarchy; deck measure too wide |
+
+## Round 5: critic 9 applied in full, jade accent replaces gold
+
+Owner overruled own rules. Applied: one nav weight with a 2px accent underline and no divider, Subscribe removed from nav, row rules removed with space as separator, docket back beside the date in mono, tagline larger, square marker on Bad Labs, accent rule above the folio, footer room and smaller colophon type, summary measure capped, jade accent on every rule and state. No ornaments.
+
+| Iteration | Score | Main gaps named by the critic |
+|---|---|---|
+| v9 | 6/10 | Right 40 percent of page empty; entries need hairlines back (reverses critic 9); masthead needs a dateline back (reverses owner); headlines too small; kicker glyph inconsistent; mono too cold; newsletter generic; nav underline is a web tab (reverses critic 9); footer thin |
+
+Ten fresh critics over nine iterations: scores 5, 5, 6, 5, 5, 5.5, 6, 6, 6, 6. Critics 9 and 10 reverse each other on row rules, nav underline, dateline, and ornament.
