@@ -4,14 +4,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* OPTION B — dark hybrid, iteration 4.
+/* OPTION B — dark hybrid, iteration 3.
    Three faces, one job each. Limelight: nameplate, section voice, folio, footer colophon, printer's mark.
    Newsreader: titles, summaries, and every label set as hand-made small caps (uppercase, reduced size, tracked).
    IBM Plex Mono: dates only. Cool ink on cold near-black. Accent is cobalt, used for the active nav marker,
    the newsletter button, and the tint of every hairline. One texture: 3.5% grain, plus a faint cool glow at the top. */
 :root{
   --bg:#060B14;
-  --ink:#ECF2F6; --smoke:rgba(236,242,246,.74); --ash:rgba(236,242,246,.5);
+  --ink:#ECF2F6; --smoke:rgba(236,242,246,.68); --ash:rgba(236,242,246,.46);
   --hair:rgba(110,150,225,.18); --hair2:rgba(110,150,225,.32); --hair3:rgba(140,175,235,.55);
   --accent:#3E6EDC; --accent-hi:#5C88F0;
   --mark:"Limelight",Georgia,serif; --serif:"Newsreader","Iowan Old Style",Georgia,serif; --mono:"IBM Plex Mono",Menlo,Consolas,monospace;
@@ -32,19 +32,19 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
 /* nameplate: wordmark, tagline, then a single rule-bound strip carrying nav, dateline and subscribe */
 .plate{text-align:center;padding:68px 0 0}
-.plate .mark{display:block;font:400 clamp(54px,8.6vw,116px)/1 var(--mark);letter-spacing:-.01em;color:#F5FAFF;margin:0}
-.plate .mark .w2{margin-left:.16em}
+.plate .mark{display:block;font:400 clamp(54px,8.6vw,116px)/1 var(--mark);letter-spacing:.012em;color:#F5FAFF;margin:0}
+.plate .mark .w2{margin-left:.18em}
 .plate .tag{margin:16px 0 0;font:italic 400 17px/1.4 var(--serif);color:var(--smoke)}
-.strip{position:sticky;top:0;z-index:5;margin-top:30px;background:rgba(6,11,20,.92);backdrop-filter:blur(8px);border-top:3px double var(--hair3);border-bottom:1px solid var(--hair)}
-.strip .wrap{display:flex;align-items:stretch;gap:24px;font-size:15px}
+.strip{position:sticky;top:0;z-index:5;margin-top:30px;background:rgba(6,11,20,.92);backdrop-filter:blur(8px);border-top:1px solid var(--hair3);border-bottom:1px solid var(--hair)}
+.strip .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:24px;font-size:15px}
 .strip .nav{display:flex;gap:26px}
 .strip a{display:inline-flex;align-items:center;padding:13px 0;color:var(--smoke);border-bottom:1px solid transparent;margin-bottom:-1px}
 .strip a:hover{color:var(--ink)}
 .strip a.on{color:var(--ink);border-bottom-color:var(--accent-hi)}
-.strip .dl{display:flex;align-items:center;gap:14px;color:var(--ash);font-size:13px;margin-left:auto;padding-right:28px;border-right:1px solid var(--hair)}
+.strip .dl{display:flex;align-items:center;gap:14px;color:var(--ash);font-size:13px}
 .strip .dl .date{font-size:12px}
-
-@media (max-width:820px){.strip .dl{display:none}.strip .sub{margin-left:auto}}
+.strip .sub{justify-self:end}
+@media (max-width:820px){.strip .wrap{grid-template-columns:1fr auto}.strip .dl{display:none}}
 
 /* ledger: one continuous vertical rule, narrow date column, a lead entry, then uniform entries */
 .ledger{position:relative;margin-top:8px}
@@ -52,15 +52,15 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .item{display:grid;grid-template-columns:var(--refcol) 1fr;grid-template-rows:auto auto auto;column-gap:var(--gut);align-items:baseline;padding:30px 0 34px;border-bottom:1px solid var(--hair)}
 .item .slug{grid-column:2;grid-row:1;color:var(--ash);font-size:15px}
 .item .slug .sep{margin:0 .5em;opacity:.6}
-.item .ref{grid-column:1;grid-row:1 / span 2;align-self:start;padding-right:14px;color:var(--smoke);font-size:13px;line-height:1.5}
+.item .ref{grid-column:1;grid-row:2;padding-right:14px;color:var(--smoke);font-size:13px;line-height:1.5}
 .item .ref small{display:block;font-size:15px;color:var(--ash);margin-top:3px;letter-spacing:.06em}
 .item h3{grid-column:2;grid-row:2;margin:8px 0 0;font:400 28px/1.22 var(--serif);letter-spacing:-.006em;color:#F5FAFF}
 .item h3 a:hover{text-decoration:underline;text-decoration-color:var(--accent-hi);text-underline-offset:5px;text-decoration-thickness:1px}
 .item p{grid-column:2;grid-row:3;margin:10px 0 0;max-width:62ch;color:var(--smoke);font-size:17px;line-height:1.5}
-.item.lead{padding:30px 0 34px}
-.item.lead h3{font:400 39px/1.12 var(--serif);letter-spacing:-.012em}
-.item.lead p{font-size:20px;line-height:1.45;color:var(--ink);max-width:60ch;margin-top:14px}
-.folio{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0 0;font:400 17px/1.5 var(--mark);letter-spacing:.05em;color:var(--smoke)}
+.item.lead{padding:40px 0 44px}
+.item.lead h3{font:400 42px/1.1 var(--serif);letter-spacing:-.014em}
+.item.lead p{font-size:21px;line-height:1.42;color:var(--ink);max-width:54ch;margin-top:16px}
+.folio{display:flex;justify-content:space-between;align-items:baseline;padding:18px 0 0;font:400 15px/1.5 var(--mark);letter-spacing:.06em;color:var(--ash)}
 .folio a{color:var(--smoke)} .folio a:hover{color:var(--ink)}
 @media (max-width:640px){
   .ledger::before{display:none}
@@ -77,8 +77,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
 /* newsletter coupon: hairline box with deco corner brackets, typeset form line, cobalt button */
 .letter{margin:56px auto 0}
-.letter .box{position:relative;background:rgba(110,150,225,.06);border-top:1px solid var(--hair3);padding:36px 40px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
-.letter h2{font:400 22px/1 var(--mark);letter-spacing:.1em;text-transform:uppercase;margin:0;color:#F5FAFF}
+.letter .box{position:relative;border:1px solid var(--hair2);padding:36px 40px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+.letter .box::before,.letter .box::after{content:"";position:absolute;width:12px;height:12px;border:1px solid var(--hair3);pointer-events:none}
+.letter .box::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.letter .box::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.letter h2{font:400 20px/1 var(--mark);letter-spacing:.1em;text-transform:uppercase;margin:0;color:#F5FAFF}
 .letter p{color:var(--smoke);font-size:16px;margin:10px 0 0;max-width:50ch}
 .letter form{display:flex;align-items:flex-end;gap:18px}
 .letter input{width:250px;padding:8px 2px;background:transparent;border:0;border-bottom:1px solid var(--hair3);color:var(--ink);font:17px var(--serif)}
@@ -89,7 +92,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
 /* footer: colophon line in the nameplate voice, printer's mark centred */
 footer{margin-top:64px;border-top:1px solid var(--hair)}
-footer .wrap{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;padding:20px var(--gut) 60px;font:400 15px/1.5 var(--mark);letter-spacing:.05em;color:var(--smoke);white-space:nowrap}
+footer .wrap{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;padding:20px var(--gut) 60px;font:400 14px/1.5 var(--mark);letter-spacing:.06em;color:var(--ash);white-space:nowrap}
 footer .wrap > :last-child{text-align:right}
 footer a:hover{color:var(--ink)}
 footer .pmark{display:block;width:44px;height:44px}
