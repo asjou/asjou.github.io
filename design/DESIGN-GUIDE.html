@@ -1,17 +1,17 @@
 <title>NatSec Noir Design Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Limelight&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* The guide is set in the system it documents. Every value below is a token from iteration 11. */
+/* The guide is set in the system it documents. Every value below is a token from iteration 14. */
 :root{
   --bg:#0B0C0F; --panel:#121317;
-  --ink:#ECF0F3; --dim:#A9B2BA; --ash:rgba(236,240,243,.5);
+  --ink:#ECF0F3; --dim:#BAC3CA; --ash:#8B949B;
   --accent:#4BB394; --hair:rgba(75,179,148,.2); --hair2:rgba(75,179,148,.34); --hair3:rgba(75,179,148,.55);
   --jade:#1E6B58; --vermilion:#C4432F;
-  --mast:"Poiret One","Josefin Sans","Century Gothic",sans-serif;
+  --mast:"Limelight","Poiret One","Century Gothic",sans-serif;
   --serif:"EB Garamond",Garamond,Georgia,serif;
   --mono:"Courier Prime","Courier New",Courier,monospace;
-  --measure:830px; --refcol:118px; --gut:32px;
+  --page:1180px; --measure:830px; --rail:280px; --railgap:56px; --refcol:118px; --gut:32px;
 }
 *{box-sizing:border-box}
 html{color-scheme:dark;background:var(--bg)}
@@ -19,28 +19,43 @@ body{margin:0;min-height:100vh;position:relative;background:var(--bg) radial-gra
 body::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:50;opacity:.08;mix-blend-mode:screen;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 a{color:inherit;text-decoration:none}
-a:hover{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px;text-decoration-thickness:1px}
+.body a:hover,.folio a:hover{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px;text-decoration-thickness:1px}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .wrap{max-width:var(--measure);margin:0 auto;padding:0 var(--gut)}
 .sc{font-family:var(--serif);text-transform:uppercase;letter-spacing:.1em;font-size:.78em}
 .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
-h1,h2,h3,p{margin:0}
+h1,h2,h3,h4,h5,p{margin:0}
 
-/* masthead of the guide */
-.plate{text-align:center;padding:60px 0 0}
-.plate .mark{display:block;font:400 clamp(40px,5vw,68px)/1 var(--mast);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
-.plate .mark span{margin-left:.06em}
-.plate .tag{margin:18px 0 9px;font:italic 400 19px/1.4 var(--serif);color:var(--ink);opacity:.85}
-.strip{position:sticky;top:0;z-index:5;margin-top:8px;background:rgba(11,12,15,.93);backdrop-filter:blur(8px);border-top:1px solid var(--hair3);border-bottom:1px solid var(--hair2);box-shadow:0 -5px 0 0 var(--bg),0 -8px 0 0 var(--hair3)}
-.strip .wrap{display:flex;align-items:stretch;gap:24px;font-size:17px;flex-wrap:wrap}
-.strip .nav{display:flex;gap:26px;flex-wrap:wrap}
-.strip a{display:inline-flex;align-items:center;padding:13px 0;color:var(--dim);position:relative}
-.strip a:hover{color:var(--ink);text-decoration:none}
-.strip a.on{color:var(--ink)}
-.strip a.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--accent)}
-.strip .dl{display:flex;align-items:center;color:var(--dim);margin-left:auto}
+/* masthead: the blinds plate, the cut-metal wordmark, the light through the letters */
+.plate{position:relative;z-index:0;text-align:center;padding:92px 0 0;isolation:isolate}
+.plate::before,.plate .lit{position:absolute;inset:0 0 -220px;z-index:-1;
+  background:linear-gradient(to bottom,rgba(11,12,15,.05) 0%,rgba(11,12,15,.2) 45%,rgba(11,12,15,.7) 78%,var(--bg) 100%),url(img/blinds.jpg) center 30%/cover no-repeat}
+.plate::before{content:""}
+.plate .lit{z-index:1;padding:92px 0 0;color:transparent;-webkit-background-clip:text;background-clip:text;pointer-events:none;user-select:none;mix-blend-mode:multiply;filter:brightness(2.4) contrast(1.05);opacity:.7}
+.plate .lit .mark{color:transparent;position:static}
+.plate .lit .mark::before{display:none}
+.strip,main,footer{position:relative;z-index:1}
+.plate .mark{display:block;margin:0;font:400 clamp(38px,5vw,66px)/1 var(--mast);letter-spacing:.035em;text-transform:uppercase;color:var(--ink);position:relative}
+.plate .mark .w2{margin-left:.02em}
+.plate .mark::before{content:attr(data-text);position:absolute;inset:0;z-index:-1;color:#7d878e;
+  text-shadow:0 1px 0 #5a6268,0 2px 0 #42494e,0 3px 0 #2e3337,0 4px 0 #1d2124,0 9px 10px rgba(0,0,0,.75),12px 26px 34px rgba(0,0,0,.7)}
+.plate .mark .t{color:#EEF2F4}
+.plate .tag{margin:22px auto 0;padding:0 var(--gut) 44px;max-width:var(--page);font:italic 400 19px/1.4 var(--serif);color:var(--ink);opacity:.9;text-shadow:0 2px 12px rgba(0,0,0,.9),0 1px 2px rgba(0,0,0,.8)}
 
-/* sections use the ledger: label in the margin column, content to the right */
+/* strip: lacquer bar, lit top edge, shadow onto the page */
+.strip{position:sticky;top:0;z-index:5 !important;background:linear-gradient(to bottom,rgba(26,28,33,.97),rgba(13,14,17,.97));backdrop-filter:blur(8px);
+  border-top:1px solid var(--hair3);border-bottom:1px solid var(--hair3);box-shadow:inset 0 1px 0 rgba(236,240,243,.1),0 14px 28px -10px rgba(0,0,0,.85)}
+.strip .wrap{display:flex;align-items:stretch;gap:24px;font-size:17px;max-width:var(--page)}
+.strip .nav{display:flex;gap:26px;white-space:nowrap;overflow-x:auto;scrollbar-width:none}
+.strip .nav::-webkit-scrollbar{display:none}
+.strip a{display:inline-flex;align-items:center;padding:13px 0;color:#CBD3D9}
+.strip a:hover{color:#fff}
+.strip a.on{color:#fff;position:relative}
+.strip a.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--accent);box-shadow:0 0 10px rgba(75,179,148,.55)}
+.strip .dl{display:flex;align-items:center;color:var(--ash);margin-left:auto;white-space:nowrap}
+@media (max-width:820px){.strip .dl{display:none}}
+
+/* guide sections on the ledger: label in the margin column, content to the right */
 .ledger{position:relative;margin-top:44px}
 .ledger::before{content:"";position:absolute;top:0;bottom:0;left:var(--refcol);width:1px;background:var(--hair)}
 .sec{display:grid;grid-template-columns:var(--refcol) 1fr;column-gap:var(--gut);padding:0 0 64px}
@@ -51,21 +66,22 @@ h1,h2,h3,p{margin:0}
 .sec h3{font:500 22px/1.25 var(--serif);margin:28px 0 8px}
 .sec p{max-width:600px;color:var(--dim)}
 .sec p+p{margin-top:12px}
-.sec p strong{color:var(--ink);font-weight:500}
+.sec p strong,.sec li strong{color:var(--ink);font-weight:500}
 .sec ul{margin:10px 0 0;padding-left:1.1em;color:var(--dim);max-width:600px}
 .sec li{margin:6px 0}
-.sec li strong{color:var(--ink);font-weight:500}
-.kick{color:var(--dim);font-size:18px;margin-bottom:12px}
-.kick .tag{color:var(--ink)}
-.kick .sep{margin:0 .5em;color:var(--hair3)}
 
 /* swatches */
 .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:18px;max-width:640px}
-.sw{border:1px solid var(--hair);padding:0}
+.sw{border:1px solid var(--hair)}
 .sw i{display:block;height:64px}
 .sw .n{padding:10px 12px 12px;font-size:15px;color:var(--dim)}
 .sw .n b{display:block;color:var(--ink);font-weight:500}
 .sw .n code{font-family:var(--mono);font-size:13px;color:var(--ash)}
+.plates{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;max-width:640px}
+.plates figure{margin:0;border:1px solid var(--hair)}
+.plates img{display:block;width:100%;aspect-ratio:5/2;object-fit:cover}
+.plates figcaption{padding:10px 12px 12px;font-size:15px;color:var(--dim)}
+.plates figcaption b{display:block;color:var(--ink);font-weight:500}
 
 /* tables */
 table{border-collapse:collapse;width:100%;max-width:640px;margin-top:16px;font-size:16px}
@@ -78,77 +94,109 @@ td .mono{font-size:14px;color:var(--ash)}
 /* specimens */
 .spec{margin-top:18px;border:1px solid var(--hair);padding:24px 24px 28px;background:var(--panel);position:relative}
 .spec::before{content:"Specimen";position:absolute;top:-9px;left:16px;padding:0 8px;background:var(--bg);font-family:var(--serif);text-transform:uppercase;letter-spacing:.1em;font-size:12px;color:var(--ash)}
-.spec .mark{display:block;text-align:center;font:400 44px/1 var(--mast);letter-spacing:.12em;text-transform:uppercase}
-.spec .tag{text-align:center;margin:12px 0 0;font:italic 400 17px/1.4 var(--serif);color:var(--ink);opacity:.85}
-.spec .rule{margin-top:14px;border-top:3px double var(--hair3);border-bottom:1px solid var(--hair2);min-height:44px;display:flex;align-items:center;gap:22px;font-size:15px;color:var(--dim);flex-wrap:wrap}
-.spec .rule span{white-space:nowrap}
-.spec .rule .on{color:var(--ink);border-bottom:2px solid var(--accent);padding:12px 0 10px}
-.spec .rule .r{margin-left:auto}
+.spec.dark{padding:0;overflow:hidden}
+.spec.dark .mini{position:relative;isolation:isolate;text-align:center;padding:48px 24px 0;background:linear-gradient(to bottom,rgba(11,12,15,.05),rgba(11,12,15,.75) 85%,var(--panel)),url(img/blinds.jpg) center 30%/cover no-repeat}
+.spec.dark .mini .mark{display:block;font:400 44px/1 var(--mast);letter-spacing:.035em;text-transform:uppercase;color:#EEF2F4;position:relative}
+.spec.dark .mini .mark::before{content:attr(data-text);position:absolute;inset:0;z-index:-1;color:#7d878e;text-shadow:0 1px 0 #5a6268,0 2px 0 #42494e,0 3px 0 #2e3337,0 9px 10px rgba(0,0,0,.75),12px 26px 34px rgba(0,0,0,.7)}
+.spec.dark .mini .tag{margin:14px 0 0;padding-bottom:28px;font:italic 400 17px/1.4 var(--serif);color:var(--ink);opacity:.9;text-shadow:0 2px 12px rgba(0,0,0,.9)}
+.spec.dark .bar{background:linear-gradient(to bottom,rgba(26,28,33,.97),rgba(13,14,17,.97));border-top:1px solid var(--hair3);border-bottom:1px solid var(--hair3);box-shadow:inset 0 1px 0 rgba(236,240,243,.1),0 14px 28px -10px rgba(0,0,0,.85);padding:0 24px;display:flex;align-items:center;gap:22px;font-size:15px;color:#CBD3D9;flex-wrap:wrap;min-height:44px}
+.spec.dark .bar span{white-space:nowrap}
+.spec.dark .bar .on{color:#fff;border-bottom:2px solid var(--accent);box-shadow:0 8px 10px -8px rgba(75,179,148,.55);padding:12px 0 10px}
+.spec.dark .bar .r{margin-left:auto;color:var(--ash)}
+.spec.dark .after{height:28px}
+
 .item{display:grid;grid-template-columns:var(--refcol) 1fr;grid-template-rows:auto auto auto;column-gap:var(--gut);align-items:baseline;position:relative}
 .item::before{content:"";position:absolute;top:0;bottom:0;left:var(--refcol);width:1px;background:var(--hair)}
-.item .slug{grid-column:2;grid-row:1;color:var(--dim);font-size:16px}
-.item .slug .tag{color:var(--ink)} .item .slug .bad{color:var(--vermilion)} .item .slug .sep{margin:0 .5em;color:var(--hair3)}
-.item .ref{grid-column:1;grid-row:1 / span 2;align-self:start;padding:3px 14px 0 0;color:var(--ash);font-size:14px;line-height:1.55;font-family:var(--mono)}
-.item .ref .date{display:block;color:var(--ink)}
+.item .slug{grid-column:2;grid-row:1;font-size:16px;color:var(--ash)}
+.item .slug .sep{margin:0 .5em;color:var(--hair3)} .item .slug .tag{color:var(--ink)} .item .slug .bad{color:var(--vermilion)}
+.item .ref{display:contents;font-size:14px}
+.item .ref .date{grid-column:1;grid-row:1;align-self:baseline;color:var(--ink);font-size:14px}
+.item .ref .docket{grid-column:1;grid-row:2;align-self:baseline;font-family:var(--mono);font-size:14px;color:var(--ash)}
 .item h4{grid-column:2;grid-row:2;margin:12px 0 0;max-width:640px;text-wrap:balance;font:500 34px/1.12 var(--serif);letter-spacing:-.006em;color:var(--ink)}
 .item p{grid-column:2;grid-row:3;margin:8px 0 0;max-width:600px;color:var(--dim);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.item.lead h4{font-size:46px;line-height:1.06;max-width:620px;margin-top:14px}
+.item.lead p{color:var(--ink);font-size:20px;-webkit-line-clamp:3;margin-top:14px}
+.item.lead{padding-bottom:36px}
+.item.lead::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--hair2)}
 .anno{margin-top:14px;font-size:15px;color:var(--ash);display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:6px 20px;max-width:640px}
 .anno span b{color:var(--dim);font-weight:400}
-.letter{border-top:3px double var(--hair3);padding:24px 0 8px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
-.letter h5{font:600 16px/1 var(--serif);letter-spacing:.14em;text-transform:uppercase;margin:0;color:var(--ink)}
-.letter p{color:var(--dim);font-size:16px;margin:8px 0 0;max-width:40ch}
-.letter form{display:flex;align-items:flex-end;gap:16px}
-.letter input{width:180px;padding:8px 2px;background:transparent;border:0;border-bottom:1px solid var(--hair3);color:var(--ink);font:17px var(--serif)}
-.letter input::placeholder{color:var(--ash)}
-.letter button{padding:10px 18px 9px;border:1px solid var(--accent);background:transparent;color:var(--accent);font:500 13px var(--serif);letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
-.letter button:hover{background:var(--jade);color:#fff;border-color:var(--jade)}
 .folio{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 0;border-top:1px solid var(--hair3);color:var(--dim);font-size:16px}
 .folio i{font-style:italic;text-transform:none;letter-spacing:0;font-size:17px}
 
-/* type specimen rows */
+/* rail specimens */
+.railspec{display:grid;grid-template-columns:var(--rail) 1fr;gap:28px;align-items:start}
+@media (max-width:720px){.railspec{grid-template-columns:1fr}}
+.rail h5{margin:0 0 12px;padding:0 0 8px;border-bottom:1px solid var(--hair2);font:500 13px/1 var(--serif);letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
+.counts{margin:0;padding:0;list-style:none;font-size:16px}
+.counts li{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid rgba(236,240,243,.06);color:var(--dim)}
+.counts li b{font-weight:400;color:var(--ink)} .counts li .n{font-family:var(--mono);font-size:14px;color:var(--ash)} .counts li .bad{color:var(--vermilion)}
+.quote{margin:0;font:italic 400 21px/1.35 var(--serif);color:var(--ink);text-wrap:pretty}
+.quote::before{content:"\201C";color:var(--hair3);margin-right:.05em} .quote::after{content:"\201D";color:var(--hair3)}
+.src{margin:12px 0 0;font-size:14px;color:var(--ash)}
+.letter .box{position:relative;isolation:isolate;overflow:hidden;border:1px solid var(--hair);border-top:3px double var(--hair3);padding:58px 22px 24px;text-align:center;background:url(img/lamp.jpg) center top/cover no-repeat var(--bg);box-shadow:inset 0 0 0 1px rgba(0,0,0,.6),0 30px 60px -30px rgba(0,0,0,.9)}
+.letter .box::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;z-index:-1;background:linear-gradient(to bottom,transparent,rgba(11,12,15,.85))}
+.letter .box>*{position:relative}
+.letter h5{border:0;padding:0;margin:0;font:600 15px/1 var(--serif);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-shadow:0 1px 8px rgba(0,0,0,.8)}
+.letter p{color:var(--ink);opacity:.88;font-size:16px;line-height:1.4;margin:10px auto 0;max-width:30ch;text-shadow:0 1px 8px rgba(0,0,0,.9)}
+.letter form{display:flex;flex-direction:column;align-items:stretch;gap:14px;margin-top:22px}
+.letter input{width:100%;padding:8px 2px;background:transparent;border:0;border-bottom:1px solid rgba(236,240,243,.55);color:var(--ink);font:17px var(--serif);text-align:center}
+.letter input::placeholder{color:rgba(236,240,243,.6)}
+.letter button{padding:11px 20px 10px;border:1px solid #f4f6f8;color:#0B0C0F;font:600 13px var(--serif);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;background:linear-gradient(to bottom,#ffffff,#d9e0e5);box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(0,0,0,.25),0 8px 16px -6px rgba(0,0,0,.9)}
+.letter button:hover{background:linear-gradient(to bottom,#ffffff,#eef2f4)}
+
+/* type rows */
 .trow{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--hair);max-width:640px}
 .trow .l{font-family:var(--mono);font-size:13px;color:var(--ash);line-height:1.5}
-.t-mark{font:400 40px/1 var(--mast);letter-spacing:.12em;text-transform:uppercase}
+.t-mark{font:400 40px/1 var(--mast);letter-spacing:.035em;text-transform:uppercase}
+.t-lead{font:500 46px/1.06 var(--serif);letter-spacing:-.006em}
 .t-title{font:500 34px/1.12 var(--serif);letter-spacing:-.006em}
 .t-body{font:400 18px/1.5 var(--serif);color:var(--dim)}
 .t-tagline{font:italic 400 19px/1.4 var(--serif)}
-.t-sc{font-family:var(--serif);text-transform:uppercase;letter-spacing:.1em;font-size:14px;color:var(--dim)}
-.t-mono{font:400 14px/1.55 var(--mono)}
+.t-sc{font-family:var(--serif);text-transform:uppercase;letter-spacing:.1em;font-size:14px;color:var(--ash)}
+.t-rail{font:500 13px/1 var(--serif);letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
+.t-mono{font:400 14px/1.55 var(--mono);color:var(--ash)}
+.t-mono b{font-weight:400;color:var(--ink)}
 
-/* do and don't */
+/* do and do not */
 .dd{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px;max-width:640px}
 .dd div{border-top:1px solid var(--hair2);padding-top:10px}
 .dd h3{margin:0 0 6px;font-size:18px}
 .dd ul{margin:0;padding-left:1.1em}
-.dd .no h3{color:var(--vermilion)}
-.dd .yes h3{color:var(--accent)}
+.dd .no h3{color:var(--vermilion)} .dd .yes h3{color:var(--accent)}
 
 pre{margin:16px 0 0;padding:18px 20px;background:var(--panel);border:1px solid var(--hair);font:14px/1.6 var(--mono);color:var(--dim);overflow-x:auto;max-width:640px}
 pre b{color:var(--ink);font-weight:400}
 
-footer{margin-top:0;border-top:1px solid var(--hair)}
-footer .wrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between;padding:22px var(--gut) 72px;color:var(--dim);font-size:14px}
+/* colophon, as on the site */
+footer{margin-top:0;border-top:3px double var(--hair3);background:linear-gradient(to top,rgba(236,240,243,.035),transparent 70%)}
+footer .wrap{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px;padding:40px var(--gut) 72px;font-size:15px;color:var(--ash);max-width:var(--page)}
+footer .fm{font:400 24px/1 var(--mast);letter-spacing:.035em;text-transform:uppercase;color:var(--ink)}
+footer .ft{margin:12px 0 0;font:italic 400 16px/1.4 var(--serif);color:var(--dim);max-width:28ch}
+footer h2{margin:0 0 10px;font:500 13px/1 var(--serif);letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
+footer ul{margin:0;padding:0;list-style:none} footer li{padding:3px 0;color:var(--dim)}
+footer .col p{margin:0 0 6px;color:var(--dim)}
+@media (max-width:720px){footer .wrap{grid-template-columns:1fr;gap:28px}}
 
 @media (max-width:640px){
   .ledger::before,.item::before{display:none}
   .sec,.item{grid-template-columns:1fr;row-gap:6px}
   .sec .ref{padding:0 0 4px}
-  .item .slug{grid-column:1;grid-row:1} .item .ref{grid-column:1;grid-row:2;padding:0} .item .ref .date{display:inline;margin-right:12px}
-  .item h4{grid-column:1;grid-row:3;font-size:28px} .item p{grid-column:1;grid-row:4}
-  .letter{grid-template-columns:1fr} .letter form{flex-wrap:wrap} .letter input{width:100%}
-  .dd{grid-template-columns:1fr} .trow{grid-template-columns:1fr;gap:4px}
+  .item .slug{grid-column:1;grid-row:1} .item .ref{display:block;grid-column:1;grid-row:2;line-height:1.55} .item .ref .date{display:block}
+  .item h4{grid-column:1;grid-row:3;font-size:28px} .item.lead h4{font-size:36px} .item p{grid-column:1;grid-row:4}
+  .dd{grid-template-columns:1fr} .trow{grid-template-columns:1fr;gap:4px} .plates{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
 <header class="plate">
-  <h1 class="mark">NatSec <span>Noir</span></h1>
-  <p class="tag">Design guide for the records site, from iteration 11</p>
+  <h1 class="mark" data-text="NatSec Noir"><span class="t"><span class="w1">NatSec</span> <span class="w2">Noir</span></span></h1>
+  <p class="tag">Design guide for the records site, from iteration 14</p>
+  <div class="lit" aria-hidden="true"><div class="mark"><span class="w1">NatSec</span> <span class="w2">Noir</span></div></div>
 </header>
 
 <div class="strip"><div class="wrap">
-  <div class="nav sc"><a class="on" href="#intent">Intent</a><a href="#color">Colour</a><a href="#type">Type</a><a href="#layout">Layout</a><a href="#parts">Parts</a><a href="#rules">Rules</a><a href="#tokens">Tokens</a></div>
-  <div class="dl sc">Version 1 · September 2026</div>
+  <div class="nav sc"><a class="on" href="#intent">Intent</a><a href="#color">Colour</a><a href="#plates">Plates</a><a href="#type">Type</a><a href="#layout">Layout</a><a href="#parts">Parts</a><a href="#rules">Rules</a><a href="#tokens">Tokens</a></div>
+  <div class="dl sc">Version 2 · September 2026</div>
 </div></div>
 
 <main class="wrap"><div class="ledger">
@@ -156,15 +204,15 @@ footer .wrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between;
 <section class="sec" id="intent">
   <div class="ref mono"><b>01</b>Intent</div>
   <div class="body">
-    <h2>A records index that reads like a late edition</h2>
-    <p><strong>What the site is.</strong> A public index of FCC equipment-authorization records: public notices, orders to show cause, and Covered List actions. Every entry is a real document with a date and a docket number. The page lists them newest first and sends the reader to the source.</p>
-    <p><strong>What the design does.</strong> It borrows the discipline of a printed newspaper of record and none of its decoration. Dark ground, cool ink, one accent, three typefaces with one job each, and a ledger column that makes dates and dockets scannable down one edge.</p>
+    <h2>A records index with a noir surface</h2>
+    <p><strong>What the site is.</strong> A public index of FCC equipment-authorization records: public notices, orders to show cause, and Covered List actions. Every entry is a real document with a date and a docket number. The page lists them newest first, leads with the newest, and sends the reader to the source.</p>
+    <p><strong>What the design does.</strong> It keeps the discipline of a printed newspaper of record and adds one layer of atmosphere: light through venetian blinds behind the masthead, a lamp over the newsletter, fog at the foot of the page. Everything between those surfaces is type, rules, and space.</p>
     <p><strong>Four principles.</strong> Every choice in this guide follows from them.</p>
     <ul>
-      <li><strong>Restraint over ornament.</strong> No dinkus, no printer's mark, no corner brackets, no glow. The ruling system is the only decoration.</li>
-      <li><strong>Records are equals.</strong> Entries sit in date order at one size. There is no lead story, because a docket is not news.</li>
-      <li><strong>One accent, one meaning.</strong> Jade marks structure and action. Vermilion marks enforcement risk and nothing else.</li>
-      <li><strong>Type does the work.</strong> Hierarchy comes from face, size, and colour, never from boxes, chips, or badges.</li>
+      <li><strong>Atmosphere lives on surfaces, not in ornament.</strong> Two generated plates and a cut-metal wordmark carry the noir. No dinkus, no seal, no corner brackets, no glyphs on tags.</li>
+      <li><strong>One lead, then equals.</strong> The newest record is one size up with a three-line summary and a rule beneath it. Every record after it sits at one size in date order.</li>
+      <li><strong>Jade in the rules, never on a control.</strong> Jade marks structure: hairlines, the active section, link hover. The one button is bone. Vermilion marks enforcement risk and nothing else.</li>
+      <li><strong>Three greys, three jobs.</strong> Ink for titles, tags, and dates. Dim for summaries and rail text. Ash for labels, dockets, and the colophon.</li>
     </ul>
   </div>
 </section>
@@ -173,172 +221,220 @@ footer .wrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between;
   <div class="ref mono"><b>02</b>Colour</div>
   <div class="body">
     <h2>Cool ink on neutral black, jade in the rules</h2>
-    <p>The ground is a neutral near-black, not a warm brown or a blue navy. Ink is a cool white. Jade appears only as hairlines, the active navigation marker, link hover, and the one button. Vermilion appears only on the Bad Labs tag. Gold is retired.</p>
+    <p>The ground is a neutral near-black. Ink is a cool white. Between them sit two greys with fixed jobs. Jade appears only as hairlines, the active navigation marker with its glow, and link hover. Vermilion appears only on the Bad Labs tag and its count in the rail. No green, gold, or vermilion on any control.</p>
     <div class="swatches">
       <div class="sw"><i style="background:#0B0C0F;border-bottom:1px solid var(--hair)"></i><div class="n"><b>Ground</b><code>#0B0C0F</code><br>Page background</div></div>
       <div class="sw"><i style="background:#121317;border-bottom:1px solid var(--hair)"></i><div class="n"><b>Panel</b><code>#121317</code><br>Code blocks, specimens</div></div>
-      <div class="sw"><i style="background:#ECF0F3"></i><div class="n"><b>Ink</b><code>#ECF0F3</code><br>Titles, dates, tags</div></div>
-      <div class="sw"><i style="background:#A9B2BA"></i><div class="n"><b>Dim</b><code>#A9B2BA</code><br>Summaries, kickers, nav</div></div>
-      <div class="sw"><i style="background:rgba(236,240,243,.5)"></i><div class="n"><b>Ash</b><code>ink at 50%</code><br>Dockets, colophon, placeholders</div></div>
-      <div class="sw"><i style="background:#4BB394"></i><div class="n"><b>Jade</b><code>#4BB394</code><br>Rules, active nav, button</div></div>
-      <div class="sw"><i style="background:#1E6B58"></i><div class="n"><b>Jade deep</b><code>#1E6B58</code><br>Button hover fill only</div></div>
-      <div class="sw"><i style="background:#C4432F"></i><div class="n"><b>Vermilion</b><code>#C4432F</code><br>Bad Labs tag only</div></div>
+      <div class="sw"><i style="background:#ECF0F3"></i><div class="n"><b>Ink</b><code>#ECF0F3</code><br>Titles, tags, dates, lead summary</div></div>
+      <div class="sw"><i style="background:#BAC3CA"></i><div class="n"><b>Dim</b><code>#BAC3CA</code><br>Summaries, rail text, folio</div></div>
+      <div class="sw"><i style="background:#8B949B"></i><div class="n"><b>Ash</b><code>#8B949B</code><br>Labels, dockets, rail heads, colophon</div></div>
+      <div class="sw"><i style="background:#4BB394"></i><div class="n"><b>Jade</b><code>#4BB394</code><br>Rules, active nav, hover</div></div>
+      <div class="sw"><i style="background:#C4432F"></i><div class="n"><b>Vermilion</b><code>#C4432F</code><br>Bad Labs tag and count only</div></div>
+      <div class="sw"><i style="background:linear-gradient(to bottom,#ffffff,#d9e0e5)"></i><div class="n"><b>Bone</b><code>#FFF to #D9E0E5</code><br>The Subscribe key only</div></div>
     </div>
     <h3>Hairlines</h3>
     <p>All rules are jade at reduced opacity. Three strengths, used by role.</p>
     <div class="tbl"><table>
       <tr><th>Token</th><th>Value</th><th>Where</th></tr>
-      <tr><td>hair</td><td><span class="mono">jade at 20%</span></td><td>Ledger column rule, strip bottom, colophon top, table rows</td></tr>
-      <tr><td>hair2</td><td><span class="mono">jade at 34%</span></td><td>Kicker separators, strip bottom under nav</td></tr>
-      <tr><td>hair3</td><td><span class="mono">jade at 55%</span></td><td>Masthead double rule, folio rule, newsletter rule, input line</td></tr>
+      <tr><td>hair</td><td><span class="mono">jade at 20%</span></td><td>Ledger column rule, newsletter card edge, table rows</td></tr>
+      <tr><td>hair2</td><td><span class="mono">jade at 34%</span></td><td>Rule under the lead record, rail section heads</td></tr>
+      <tr><td>hair3</td><td><span class="mono">jade at 55%</span></td><td>Strip top and bottom, folio rule, double rules on the newsletter card and footer</td></tr>
     </table></div>
+    <p>Rail list rows use ink at 6% instead, so the rail sits quieter than the ledger.</p>
+  </div>
+</section>
+
+<section class="sec" id="plates">
+  <div class="ref mono"><b>03</b>Plates</div>
+  <div class="body">
+    <h2>Two generated surfaces and one wordmark treatment</h2>
+    <p>Both plates are drawn as SVG with turbulence, displacement, blur, vignette, and grain, then rendered to bitmaps. The source is in the repository at design/img/plates-source.html. Regenerate from there. Do not substitute photographs.</p>
+    <div class="plates">
+      <figure><img src="img/blinds.jpg" alt="Light through venetian blinds on a dark wall, with smoke"><figcaption><b>Blinds</b>Behind the masthead. Fades to the ground and runs 220px past the strip so the light does not stop at the nav line.</figcaption></figure>
+      <figure><img src="img/lamp.jpg" alt="A lamp cone with dust in the beam over a dark surface"><figcaption><b>Lamp</b>Inside the newsletter card only. A gradient fades its lower 40% into the ground.</figcaption></figure>
+    </div>
+    <h3>The wordmark as cut metal</h3>
+    <p>Limelight in ivory, tracked at 0.035em, sits on a four-step grey extrusion with a long soft cast shadow down and to the right, matching the direction of the blinds light. A second copy of the wordmark clips the same blinds plate to the letters and multiplies onto the face at 70% opacity, so the light through the blinds falls across the letterforms. Keep the face flat. Do not add a gradient or a gloss.</p>
+    <div class="spec dark">
+      <div class="mini"><span class="mark" data-text="NatSec Noir">NatSec Noir</span><p class="tag">Taking public records out of dark, smoky government backrooms</p></div>
+      <div class="bar sc"><span class="on">Feed</span><span>By tags</span><span>By source</span><span>By type</span><span>RSS</span><span class="r">Updated 28 July 2026</span></div>
+      <div class="after"></div>
+    </div>
+    <div class="anno"><span><b>Extrusion.</b> Four 1px text-shadow steps from #5A6268 to #1D2124</span><span><b>Cast shadow.</b> 0 9px 10px at 75% black, then 12px 26px 34px at 70%</span><span><b>Tagline.</b> Italic ink at 90% with a dark text-shadow so it reads on the plate</span><span><b>Fog.</b> The footer carries a 3.5% ink gradient rising from the foot of the page</span></div>
   </div>
 </section>
 
 <section class="sec" id="type">
-  <div class="ref mono"><b>03</b>Type</div>
+  <div class="ref mono"><b>04</b>Type</div>
   <div class="body">
     <h2>Three faces, one job each</h2>
-    <p><strong>Poiret One</strong> sets the wordmark and nothing else. <strong>EB Garamond</strong> sets titles, summaries, the tagline, and every label as hand-set small caps. <strong>Courier Prime</strong> sets dates and docket numbers and nothing else. All three load from Google Fonts with real fallback stacks.</p>
-    <div class="trow"><div class="l">Wordmark<br>Poiret One 400<br>68px / 1 · +0.12em · caps</div><div class="t-mark">NatSec Noir</div></div>
+    <p><strong>Limelight</strong> sets the wordmark and its echo in the footer, nothing else. <strong>EB Garamond</strong> sets titles, summaries, the tagline, rail text, and every label as hand-set small caps. <strong>Courier Prime</strong> sets dates and docket numbers and nothing else. All three load from Google Fonts with real fallback stacks.</p>
+    <div class="trow"><div class="l">Wordmark<br>Limelight 400<br>66px / 1 · +0.035em · caps</div><div class="t-mark">NatSec Noir</div></div>
+    <div class="trow"><div class="l">Lead title<br>EB Garamond 500<br>46px / 1.06 · −0.006em</div><div class="t-lead">Robotics and Power Inverters Covered List</div></div>
     <div class="trow"><div class="l">Title<br>EB Garamond 500<br>34px / 1.12 · −0.006em</div><div class="t-title">Router Conditional Approvals</div></div>
     <div class="trow"><div class="l">Tagline<br>EB Garamond italic<br>19px / 1.4</div><div class="t-tagline">Taking public records out of dark, smoky government backrooms</div></div>
-    <div class="trow"><div class="l">Body<br>EB Garamond 400<br>18px / 1.5 · dim</div><div class="t-body">A Department of War Conditional Approval exempts SpaceX Starlink routers from the Covered List.</div></div>
+    <div class="trow"><div class="l">Body<br>EB Garamond 400<br>18px / 1.5 · dim<br>Lead: 20px, ink</div><div class="t-body">A Department of War Conditional Approval exempts SpaceX Starlink routers from the Covered List.</div></div>
     <div class="trow"><div class="l">Small caps<br>EB Garamond, uppercase<br>0.78em · +0.10em</div><div class="t-sc">Public notice · Covered List · Updated 28 July 2026</div></div>
-    <div class="trow"><div class="l">Mono<br>Courier Prime 400<br>14px / 1.55 · tabular</div><div class="t-mono">2026-07-28<br>DA 26-786</div></div>
+    <div class="trow"><div class="l">Rail head<br>EB Garamond 500, uppercase<br>13px · +0.14em · ash</div><div class="t-rail">On this page · From the record · Dates to watch</div></div>
+    <div class="trow"><div class="l">Mono<br>Courier Prime 400<br>14px · tabular</div><div class="t-mono"><b>2026-07-28</b><br>DA 26-786</div></div>
     <h3>Small caps recipe</h3>
-    <p>The fonts ship no true small caps, so set them by hand and they render the same everywhere: uppercase, size at 0.78 of the parent, letter-spacing 0.10em. Use this for kickers, navigation, the folio, the newsletter heading, and the colophon.</p>
+    <p>The fonts ship no true small caps, so set them by hand: uppercase, size at 0.78 of the parent, letter-spacing 0.10em. Rail heads and the newsletter heading use a tighter 13px at 0.14em. Use these for kickers, navigation, the folio, and the colophon.</p>
     <h3>Measure and wrapping</h3>
     <ul>
-      <li>Titles run to 640px and use <span class="mono">text-wrap: balance</span>, so a two-line title breaks evenly.</li>
-      <li>Summaries run to 600px and are clamped to two lines. Write them to fit. Do not rely on the clamp to cut.</li>
-      <li>Product names with hyphens use a non-breaking hyphen, so "CopyPaste‑2" never splits at the line end.</li>
-      <li>Dates are ISO in the ledger and spelled out in prose: "2026-07-28" beside the entry, "28 July 2026" in the strip.</li>
+      <li>Titles run to 640px and use <span class="mono">text-wrap: balance</span>. The lead title runs to 620px.</li>
+      <li>Summaries run to 600px and clamp to two lines. The lead summary clamps to three. Write them to fit.</li>
+      <li>Product names with hyphens use a non-breaking hyphen, so "CopyPaste‑2" never splits at a line end.</li>
+      <li>Dates are ISO in the ledger and rail, and spelled out in prose: "2026-07-28" beside the entry, "28 July 2026" in the strip.</li>
+      <li>The date sits on the kicker baseline. The docket sits on the title baseline.</li>
     </ul>
   </div>
 </section>
 
 <section class="sec" id="layout">
-  <div class="ref mono"><b>04</b>Layout</div>
+  <div class="ref mono"><b>05</b>Layout</div>
   <div class="body">
-    <h2>One centred column with a ledger margin</h2>
-    <p>The whole page lives in a centred column. Inside it, a fixed margin column carries the date and docket, a vertical hairline runs the full height of the list, and the body column carries everything else. Entries are separated by space alone. There are no rules between them.</p>
+    <h2>A ledger with a rail from 1100px</h2>
+    <p>The page is 1180px wide. From 1100px it splits into the ledger on the left and a 280px rail on the right with a 56px gap. Below 1100px the rail drops under the ledger at 600px wide. Inside the ledger a fixed margin column carries the date and docket, one vertical hairline runs the full height of the list, and entries are separated by space alone.</p>
     <div class="tbl"><table>
       <tr><th>Measure</th><th>Value</th><th>Note</th></tr>
-      <tr><td>Column</td><td><span class="mono">830px</span></td><td>Max width, centred, 32px side gutter</td></tr>
-      <tr><td>Margin column</td><td><span class="mono">118px</span></td><td>Date and docket, mono, top-aligned to the kicker</td></tr>
+      <tr><td>Page</td><td><span class="mono">1180px</span></td><td>Max width, centred, 32px side gutter</td></tr>
+      <tr><td>Rail</td><td><span class="mono">280px</span></td><td>From 1100px. Gap to ledger 56px</td></tr>
+      <tr><td>Margin column</td><td><span class="mono">118px</span></td><td>Date and docket, mono</td></tr>
       <tr><td>Column gap</td><td><span class="mono">32px</span></td><td>Between margin and body</td></tr>
-      <tr><td>Title width</td><td><span class="mono">640px</span></td><td>Balanced wrapping</td></tr>
+      <tr><td>Title width</td><td><span class="mono">640px</span></td><td>Lead 620px. Balanced wrapping</td></tr>
       <tr><td>Summary width</td><td><span class="mono">600px</span></td><td>About 70 characters</td></tr>
-      <tr><td>Between entries</td><td><span class="mono">56px</span></td><td>Space, no rule</td></tr>
-      <tr><td>Kicker to title</td><td><span class="mono">12px</span></td><td></td></tr>
-      <tr><td>Title to summary</td><td><span class="mono">8px</span></td><td></td></tr>
-      <tr><td>Phone breakpoint</td><td><span class="mono">640px</span></td><td>Margin column stacks above the entry, vertical rule hidden</td></tr>
+      <tr><td>Between entries</td><td><span class="mono">56px</span></td><td>Space, no rule. Lead: 44px, a rule, then 48px</td></tr>
+      <tr><td>Kicker to title</td><td><span class="mono">12px</span></td><td>Lead 14px</td></tr>
+      <tr><td>Title to summary</td><td><span class="mono">8px</span></td><td>Lead 14px</td></tr>
+      <tr><td>Rail sections</td><td><span class="mono">40px</span></td><td>Between modules</td></tr>
+      <tr><td>Phone breakpoint</td><td><span class="mono">640px</span></td><td>Margin column stacks above the entry. Vertical rule hidden. Nav scrolls sideways on one line</td></tr>
     </table></div>
-    <p>The navigation strip is sticky. It carries a translucent ground and a blur so the list reads through it as it scrolls.</p>
+    <p>The strip is sticky. The blinds plate runs 220px behind it, so the plate shows through the strip's translucent lacquer as the page starts to scroll.</p>
   </div>
 </section>
 
 <section class="sec" id="parts">
-  <div class="ref mono"><b>05</b>Parts</div>
+  <div class="ref mono"><b>06</b>Parts</div>
   <div class="body">
-    <h2>The six components, as built</h2>
+    <h2>The components, as built</h2>
 
     <h3>Masthead and strip</h3>
-    <p>Wordmark, italic tagline, then a thin-over-thick rule pair that the navigation strip hangs from. The strip holds the sections on the left and the update date on the right. Subscribe does not appear here, because the newsletter strip already carries it.</p>
-    <div class="spec">
-      <span class="mark">NatSec Noir</span>
-      <p class="tag">Taking public records out of dark, smoky government backrooms</p>
-      <div class="rule sc"><span class="on">Feed</span><span>By tags</span><span>By source</span><span>By type</span><span>RSS</span><span class="r">Updated 28 July 2026</span></div>
-    </div>
-    <div class="anno"><span><b>Rule pair.</b> 1px at 55% jade, 5px gap, 3px double at 55%</span><span><b>Active item.</b> Ink colour and a 2px jade underline on the strip's bottom edge</span><span><b>Weight.</b> Every item the same weight. State is colour, not bold</span></div>
+    <p>The blinds plate, the cut-metal wordmark, the italic tagline, then the strip: a lacquer bar with a lit top edge and a shadow onto the page. Sections on the left, the update date on the right. The active section is white with a 2px jade underline and a soft jade glow. Subscribe does not appear here, because the rail carries it. The specimen is in Plates above.</p>
 
-    <h3>Record entry</h3>
-    <p>The unit of the site. Kicker, then title, then a two-line summary, with the date and docket in the margin. Record type sits in dim, the topic tag in ink. The Bad Labs tag alone takes vermilion.</p>
+    <h3>Lead record</h3>
+    <p>The newest record. Title at 46px, summary at 20px in ink and three lines, a rule at 34% jade beneath. Nothing else marks it as the lead.</p>
+    <div class="spec">
+      <article class="item lead">
+        <div class="slug sc"><span class="type">Public notice</span><span class="sep">·</span><span class="tag">Covered List</span></div>
+        <div class="ref"><span class="date mono">2026-07-28</span><span class="docket">DA 26-786</span></div>
+        <h4>Robotics and Power Inverters Covered List</h4>
+        <p>The bureau adds foreign-produced power inverters and advanced robotic devices to the Covered List on Executive Branch national-security determinations.</p>
+      </article>
+    </div>
+
+    <h3>Record</h3>
+    <p>Kicker, then title, then a two-line summary, with the date and docket in the margin. Record type in ash, the topic tag in ink. The Bad Labs tag alone takes vermilion.</p>
     <div class="spec">
       <article class="item">
-        <div class="slug sc">Order to show cause<span class="sep">·</span><span class="bad">Bad Labs</span></div>
-        <div class="ref"><span class="date">2026-07-21</span>ET 26-140</div>
+        <div class="slug sc"><span class="type">Order to show cause</span><span class="sep">·</span><span class="bad">Bad Labs</span></div>
+        <div class="ref"><span class="date mono">2026-07-21</span><span class="docket">ET 26-140</span></div>
         <h4>Shenzhen STS: CopyPaste‑2 Order to Show Cause</h4>
         <p>OET opens a proceeding to withdraw a test laboratory's accreditation on a tentative finding that it willfully submitted false equipment test results.</p>
       </article>
     </div>
-    <div class="anno"><span><b>Kicker.</b> Small caps, type in dim, tag in ink, separator dot at 55% jade</span><span><b>Margin.</b> Date in ink, docket in ash, both Courier Prime 14px</span><span><b>Title.</b> 34px, weight 500, balanced wrap, jade underline on hover</span><span><b>Summary.</b> 18px dim, two lines, written to fit</span></div>
+    <div class="anno"><span><b>Kicker.</b> Small caps, type in ash, tag in ink, separator dot at 55% jade</span><span><b>Margin.</b> Date in ink on the kicker baseline, docket in ash on the title baseline</span><span><b>Title.</b> 34px, weight 500, balanced wrap, jade underline on hover</span><span><b>Summary.</b> 18px dim, two lines, written to fit</span></div>
 
     <h3>Folio</h3>
     <p>One jade rule closes the list. The count sits left in small caps. The jump line sits right, in italic, because it is a sentence and not a label.</p>
     <div class="spec"><div class="folio sc"><span>6 of 42</span><i>Continued on page 2</i></div></div>
 
-    <h3>Newsletter strip</h3>
-    <p>Full width under a double rule. No box. The field is a ruled line. The button is the one place the accent is allowed as a border and label. It fills jade on hover.</p>
-    <div class="spec"><div class="letter">
-      <div><h5>The Late Edition</h5><p>New records and one short read, when there is something worth knowing.</p></div>
-      <form><input id="guide-email" type="email" placeholder="Your address"><button type="button">Subscribe</button></form>
+    <h3>Rail</h3>
+    <p>Five modules in order: the newsletter card, counts for this page, one line from the record, dates to watch, and tags with counts across the archive. Each module opens with a rail head on a 34% jade rule. List rows sit on ink at 6%. The rail is not sticky. Its content should run the length of the feed and no further.</p>
+    <div class="spec"><div class="railspec">
+      <div class="rail letter">
+        <div class="box">
+          <h5>The Late Edition</h5><p>New records and one short read, when there is something worth knowing.</p>
+          <form><input id="guide-email" type="email" placeholder="Your address"><button type="button">Subscribe</button></form>
+        </div>
+      </div>
+      <div class="rail">
+        <h5>On this page</h5>
+        <ul class="counts"><li><b>Public notice</b><span class="n">4</span></li><li><b>Order to show cause</b><span class="n">2</span></li><li><b>Covered List</b><span class="n">5</span></li><li><b class="bad">Bad Labs</b><span class="n">1</span></li></ul>
+        <h5 style="margin-top:28px">From the record</h5>
+        <p class="quote">Willfully submitted false equipment test results.</p>
+        <p class="src"><span class="mono">ET 26-140</span> · Order to show cause, Shenzhen STS</p>
+      </div>
     </div></div>
+    <div class="anno"><span><b>Newsletter card.</b> Lamp plate, double jade rule on top, centred copy with a dark text-shadow, ruled field, bone key with a bevel</span><span><b>Counts.</b> Name in ink, number in mono ash, Bad Labs in vermilion</span><span><b>Quote.</b> Italic 21px ink with quotation marks at 55% jade, source line in ash</span></div>
 
     <h3>Colophon</h3>
-    <p>A single hairline, then one line: copyright left, provenance and repository link right, small caps in dim. Nothing else.</p>
+    <p>A double jade rule, then three columns on a fog gradient: the wordmark echo in Limelight at 24px with the tagline, the sections again, and the colophon lines. This is the one place the wordmark face repeats.</p>
   </div>
 </section>
 
 <section class="sec" id="rules">
-  <div class="ref mono"><b>06</b>Rules</div>
+  <div class="ref mono"><b>07</b>Rules</div>
   <div class="body">
     <h2>Do this, not that</h2>
-    <p>Eleven iterations and twelve independent critiques settled these. Each rule on the right cost a point at some stage.</p>
+    <p>Fourteen iterations and fifteen independent critiques settled these. Each rule on the right cost a point at some stage.</p>
     <div class="dd">
       <div class="yes"><h3>Do</h3><ul>
-        <li>Keep every entry the same size and in date order.</li>
-        <li>Use jade for rules, the active item, hover, and the button.</li>
-        <li>Reserve vermilion for enforcement-risk tags.</li>
+        <li>Lead with the newest record, then keep every entry the same size in date order.</li>
+        <li>Use jade for rules, the active section, and hover.</li>
+        <li>Keep the one button bone. No colour on any control.</li>
+        <li>Reserve vermilion for the Bad Labs tag and its counts.</li>
         <li>Set labels as hand-made small caps in the serif.</li>
-        <li>Keep dates and dockets in mono, in the margin.</li>
+        <li>Keep dates and dockets in mono, in the margin, on their baselines.</li>
         <li>Separate entries with space and the vertical hairline.</li>
-        <li>Write summaries to two lines.</li>
-        <li>Keep grain at 8% and the vignette soft.</li>
+        <li>Fill the rail to the length of the feed, then stop.</li>
+        <li>Regenerate plates from the SVG source when they change.</li>
       </ul></div>
       <div class="no"><h3>Do not</h3><ul>
-        <li>Add a lead story, hero, or featured card.</li>
-        <li>Add ornaments: dinkus, monogram, corner brackets, glow.</li>
+        <li>Add a second tier, a hero, or a featured card.</li>
+        <li>Add ornaments: dinkus, monogram, seal, corner brackets, glyphs on tags.</li>
         <li>Use gold, amber, or any warm accent.</li>
+        <li>Put green, jade, or vermilion on a button or field.</li>
         <li>Put labels in chips, badges, or boxes.</li>
-        <li>Mix a third face into labels or navigation.</li>
+        <li>Mix a fourth face in anywhere.</li>
         <li>Draw rules between entries.</li>
         <li>Show a constant tag such as "FCC" on every row.</li>
-        <li>Duplicate Subscribe in the navigation.</li>
+        <li>Duplicate Subscribe in the strip.</li>
+        <li>Use photographs where the plates belong.</li>
       </ul></div>
     </div>
     <h3>Texture</h3>
-    <p>One grain layer at 8% opacity in screen blend, from an SVG turbulence filter, sits over the whole page and ignores the pointer. A radial vignette darkens the corners of the ground. Both are felt, not seen.</p>
+    <p>One grain layer at 8% opacity in screen blend, from an SVG turbulence filter, sits over the whole page and ignores the pointer. A radial vignette darkens the corners of the ground. The blinds and lamp plates carry their own grain. Do not stack more.</p>
   </div>
 </section>
 
 <section class="sec" id="tokens">
-  <div class="ref mono"><b>07</b>Tokens</div>
+  <div class="ref mono"><b>08</b>Tokens</div>
   <div class="body">
     <h2>Copy the root block</h2>
     <p>Every value on this page comes from these variables. Start any new page of the site from them.</p>
 <pre>:root{
   <b>--bg</b>:#0B0C0F;  <b>--panel</b>:#121317;
-  <b>--ink</b>:#ECF0F3;  <b>--dim</b>:#A9B2BA;  <b>--ash</b>:rgba(236,240,243,.5);
+  <b>--ink</b>:#ECF0F3;  <b>--dim</b>:#BAC3CA;  <b>--ash</b>:#8B949B;
   <b>--accent</b>:#4BB394;
   <b>--hair</b>:rgba(75,179,148,.2);  <b>--hair2</b>:rgba(75,179,148,.34);  <b>--hair3</b>:rgba(75,179,148,.55);
   <b>--jade</b>:#1E6B58;  <b>--vermilion</b>:#C4432F;
-  <b>--mast</b>:"Poiret One","Josefin Sans","Century Gothic",sans-serif;
+  <b>--mast</b>:"Limelight","Poiret One","Century Gothic",sans-serif;
   <b>--serif</b>:"EB Garamond",Garamond,Georgia,serif;
   <b>--mono</b>:"Courier Prime","Courier New",Courier,monospace;
-  <b>--measure</b>:830px;  <b>--refcol</b>:118px;  <b>--gut</b>:32px;
+  <b>--page</b>:1180px;  <b>--rail</b>:280px;  <b>--railgap</b>:56px;  <b>--refcol</b>:118px;  <b>--gut</b>:32px;
 }
 body{background:var(--bg);color:var(--ink);font:18px/1.5 var(--serif)}
 .sc{font-family:var(--serif);text-transform:uppercase;letter-spacing:.1em;font-size:.78em}
-.date{font-family:var(--mono);font-variant-numeric:tabular-nums}</pre>
-    <p>The full page source is iteration 11 in the repository's design folder, with every earlier iteration, its screenshot, and the critique log beside it.</p>
+.date{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.page{display:grid;grid-template-columns:minmax(0,1fr) var(--rail);column-gap:var(--railgap)}</pre>
+    <p>The full page source is iteration 14 in the repository's design folder, with every earlier iteration, its screenshot, the plate source, and the critique log beside it.</p>
   </div>
 </section>
 
 </div></main>
 
-<footer><div class="wrap sc">
-  <span>© 2026 NatSecNoir.com</span>
-  <span>Design guide · Version 1 · From iteration 11</span>
+<footer><div class="wrap">
+  <div class="col"><div class="fm"><span class="w1">NatSec</span> <span class="w2">Noir</span></div><p class="ft">Design guide, version 2, from iteration 14</p></div>
+  <div class="col"><h2>Sections</h2><ul class="sc"><li><a href="#intent">Intent</a></li><li><a href="#color">Colour</a></li><li><a href="#plates">Plates</a></li><li><a href="#type">Type</a></li><li><a href="#layout">Layout</a></li><li><a href="#parts">Parts</a></li><li><a href="#rules">Rules</a></li><li><a href="#tokens">Tokens</a></li></ul></div>
+  <div class="col"><h2>Colophon</h2><p>© 2026 NatSecNoir.com</p><p>Set in Limelight, EB Garamond, and Courier Prime.</p><p>Fifteen critiques, fourteen iterations.</p></div>
 </div></footer>
